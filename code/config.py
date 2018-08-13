@@ -6,30 +6,32 @@ Created on Sat May 26 22:23:16 2018
 """
 
 
-
+anchors = [[1.3221, 1.73145],
+           [3.19275, 4.00944],
+           [5.05587, 8.09892],
+           [9.47112, 4.84053],
+           [11.2364, 10.0071]]
 
 leaky_relu_alpha = 0.1
-box_per_cell = 5
+box_per_cell = len(anchors)
 num_class = 20
 num_predict = box_per_cell*(num_class+5)
 
 image_size = 416
+eps = 1e-10
 
-anchors = [[0.57273, 0.677385],
-           [1.87446, 2.06253],
-           [3.33843, 5.47434],
-           [7.88282, 3.52778],
-           [9.77052, 9.16828]]
 
 
 
 object_scale = 5
-noobeject_scale = 1
-coordi_scale = 5
+noobject_scale = 1
+#use this ratio to control of no object cell's number
+noobject_ratio = 0.7
+coordi_scale = 1
 class_scale = 1
 
 
-
+debug = True
 loss_parameter = ()
 
 
@@ -51,11 +53,11 @@ cell_size = 13
 
 # Trainning parameter
 
-batch_size = 16
+batch_size = 1
 epoch = 50
 saver_iter = 5000
 summary_iter = 20
-learning_rate = 0.0001
+learning_rate = 0.0005
 
 # train path
 

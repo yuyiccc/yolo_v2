@@ -8,7 +8,7 @@ Created on Thu May 31 23:24:12 2018
 import tensorflow as tf
 import os
 import re
-#from tensorflow.python import debug as tf_debug
+from tensorflow.python import debug as tf_debug
 
 import config as cfg
 from yolo_v2 import yolo_v2
@@ -59,7 +59,8 @@ class Train():
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
         self.sess = tf.Session(config=config)
-#        self.sess = tf_debug.LocalCLIDebugWrapperSession(self.sess)
+        if(cfg.debug):
+            self.sess = tf_debug.LocalCLIDebugWrapperSession(self.sess)
         self.sess.run(tf.global_variables_initializer())
         
         print('====用预训练初始化权重=====')

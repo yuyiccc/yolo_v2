@@ -9,7 +9,7 @@ from preprosess_data import pascal_voc
 import numpy as np
 import cv2
 import config as cfg
-from test import postprosessing,draw_box
+from utili import postprosessing,draw_box
 from yolo_v2 import yolo_v2
 
 w,h = 416,416
@@ -24,9 +24,9 @@ with tf.Session() as sess:
         im,la = sess.run((images,labes))
 
 
-model_path = '/home/yuyi/Desktop/detect/output/model_weight/yolo_v2-12000'
+model_path = '/home/yuyi/Desktop/detect/output/model_weight/yolo_v2-35000'
 im_o = np.squeeze(im)
-im_o = 255*(im_o+1)/2
+im_o = 256.0*im_o
 im_o = im_o.astype(np.uint8)
 img = tf.placeholder(tf.float32,shape=[1,cfg.image_size,cfg.image_size,3])
 label = tf.placeholder(tf.float32,shape=[1,cfg.cell_size,cfg.cell_size,5,25])
@@ -50,7 +50,7 @@ cv2.waitKey(0)
 
 
 im = np.squeeze(im)
-im = 255*(im+1)/2
+im = 256.0*im
 im = im.astype(np.uint8)
 #cv2.imshow('im',im)
 #cv2.waitKey(0)

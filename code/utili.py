@@ -218,7 +218,7 @@ def read_im(image_path):
     im_resize = cv2.resize(im_ori,(cfg.image_size,cfg.image_size))
     im_resize = cv2.cvtColor(im_resize,cv2.COLOR_BGR2RGB).astype(np.float32)
     im_ori = cv2.cvtColor(im_ori,cv2.COLOR_BGR2RGB)
-    im_resize = 2*im_resize/255-1
+    im_resize = im_resize/256.0
     
     
     im_resize = np.reshape(im_resize,(1,cfg.image_size,cfg.image_size,3))
@@ -310,8 +310,8 @@ def postprosessing(obj_value,class_value,bboxes_value,w,h):
     # decode the bbox
     obj_bbox[:,0] = obj_bbox[:,0]*w
     obj_bbox[:,1] = obj_bbox[:,1]*h
-    obj_bbox[:,2] = np.square(obj_bbox[:,2])*w
-    obj_bbox[:,3] = np.square(obj_bbox[:,3])*h
+    obj_bbox[:,2] = obj_bbox[:,2]*w
+    obj_bbox[:,3] = obj_bbox[:,3]*h
     # convert to xmin ymin xmax ymax
     obj_bbox[:,0],obj_bbox[:,1],obj_bbox[:,2],obj_bbox[:,3] = \
     obj_bbox[:,0]-obj_bbox[:,2]/2,obj_bbox[:,1]-obj_bbox[:,3]/2,\

@@ -13,8 +13,8 @@ from yolo_v2 import yolo_v2
 import config as cfg
 import utili as u
 
-image_path = '/home/yuyi/Desktop/detect/data/test_img/1.jpeg'
-model_path = '/home/yuyi/Desktop/detect/output/model_weight/yolo_v2-35000'
+image_path = '/home/yuyi/Desktop/detect/data/test_img/3.jpg'
+model_path = '/home/yuyi/Desktop/detect/output/model_weight/yolo_v2-30000'
 
 
 
